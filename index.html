@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AssignmentNumberSix</title>
+</head>
+
+<body style="text-align: center; background-color: =#000000;"> 
+      
+    <h1 style="color: #E5061C;"> Amicable Or Not? </h1> 
+ 
+    <form id="forms" class="" action="index.html" method="post"> 
+		<h2> Please input two numbers: </h2>
+		<br> 
+       	<input type="text" name="array[]" value="" /><br> 
+        <input type="text" name="array[]" value="" /><br> 
+		<br>
+    </form> 
+	<br>
+    <br> 
+	<button type="button" name="button" onclick="isAmicable()"> Submit </button> 
+	<br>
+	<br>
+ 	<div id="div1"></div>
+	
+    <script type="text/javascript"> 
+		//inner HTML statements
+		var statement = "The numbers: ";
+		var yesAmicable = " are amicable";
+		var noAmicable = " are not amicable";
+	
+		//pop up alerts that print out factors 
+		function popUpAlert(number){
+			//create an empty array 
+			var array = [];
+			for(var i =1;i<number;i++){
+				if(number % i == 0) {
+					array[i] = i;
+				}
+				else{
+					//delete the numbers that are not factors in the array 
+					delete array[i];
+				}
+			}
+			
+			alert("The factors for " + number + " are/is: " + array);
+		}
+		//function calculating the sum of factors that exist for one number---
+		function sumFactors(nums){
+			var sum = 0;
+		
+			for(var i =1;i<nums;i++){
+				if(nums % i == 0) {
+					sum = sum + i;
+				}
+			}
+	
+			return sum;
+		}
+		
+		//-boolean function comparing if the two numbers factors' add up to the other----
+		function compare(num1, num2){
+			if((sumFactors(num1) == num2 )&& (sumFactors(num2)==num1)){
+				return true;
+			}
+			else{
+				return false;
+			}	
+		}
+		
+		//populates data and prints out alerts & print statements----------------
+		function isAmicable(){
+			//capturing the elements in the textbox
+			var input = document.getElementsByName('array[]'); 
+			//empty array list 
+			var output = [];
+		
+			
+			//populate the array (the two numbers)
+			for (var i = 0; i < 2; i++) {
+				//place each value as a number into the originally empty array list
+				output[i]= input[i].value;	
+			}
+			//general final statement 
+			statement = statement + " " + output[0] +" and " + output[1];
+			
+			popUpAlert(output[0]);
+			popUpAlert(output[1]);
+			
+			//replace div based on id with a statement of yes or no -- that is or //not amicable
+			if (compare(output[0],output[1])){
+				document.getElementById("div1").innerHTML= statement + yesAmicable;
+			}
+			else{
+				document.getElementById("div1").innerHTML = statement + noAmicable;
+			}
+		}
+		
+    </script> 
+</body>
+</html>
